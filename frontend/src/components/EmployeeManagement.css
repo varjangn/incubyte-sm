@@ -1,0 +1,75 @@
+.employee-management {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions h2 {
+  margin: 0;
+  color: #333;
+}
+
+.table-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-table th, .employee-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.employee-table th {
+  background-color: #f8f9fa;
+  color: #555;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.employee-table tr:hover {
+  background-color: #fafafa;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.active { background-color: #e3fcef; color: #0d8246; }
+.status-badge.suspended { background-color: #fff3cd; color: #856404; }
+.status-badge.terminated { background-color: #f8d7da; color: #721c24; }
+.status-badge.on-leave { background-color: #cce5ff; color: #004085; }
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: #FF7A00;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.btn-icon:hover {
+  text-decoration: underline;
+}
+
+.btn-icon.delete {
+  color: #dc3545;
+}
