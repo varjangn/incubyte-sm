@@ -5,4 +5,5 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployeeProfile
         fields = '__all__'
-        read_only_fields = ('employee_id',)
+        read_only_fields = ('employee_id', 'user')
+
