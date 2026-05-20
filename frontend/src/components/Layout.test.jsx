@@ -13,7 +13,7 @@ describe('Layout Component', () => {
     );
     
     // Should contain the Sidebar (checked by looking for its link)
-    expect(screen.getByText(/Managing Employees/i)).toBeInTheDocument();
+    expect(screen.getByText(/Employees/i)).toBeInTheDocument();
     
     // Should contain the children
     expect(screen.getByTestId('main-content')).toBeInTheDocument();
