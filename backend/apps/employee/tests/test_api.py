@@ -39,8 +39,35 @@ class EmployeeProfileAPITests(APITestCase):
         )
         response = self.client.get(self.list_create_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # response.data could be paginated or a direct list depending on settings, assuming direct list for standard viewset
-        self.assertEqual(len(response.data), 2)
+        self.assertIn('results', response.data)
+        self.assertEqual(len(response.data['results']), 2)
+
+    def test_pagination_employee_profiles_api(self):
+        for i in range(15):
+            user = User.objects.create_user(email=f'test_page_{i}@example.com', password='password123')
+            EmployeeProfile.objects.create(
+                user=user, first_name=f'John{i}', last_name='Doe',
+                salary=100000, country='USA', joining_date=date(2026, 1, 1)
+            )
+        
+        response = self.client.get(self.list_create_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        self.assertIn('count', response.data)
+        self.assertIn('next', response.data)
+        self.assertIn('previous', response.data)
+        self.assertIn('results', response.data)
+        
+        self.assertEqual(response.data['count'], 15)
+        self.assertEqual(len(response.data['results']), 10) # Default page size 10
+        self.assertIsNotNone(response.data['next'])
+        
+        # Test second page
+        response_page_2 = self.client.get(self.list_create_url + '?page=2')
+        self.assertEqual(response_page_2.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response_page_2.data['results']), 5)
+        self.assertIsNone(response_page_2.data['next'])
+        self.assertIsNotNone(response_page_2.data['previous'])
 
     def test_retrieve_employee_profile_api(self):
         profile = EmployeeProfile.objects.create(
