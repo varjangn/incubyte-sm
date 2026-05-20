@@ -1,7 +1,11 @@
 from rest_framework.routers import DefaultRouter
-from .views import EmployeeProfileViewSet
+from django.urls import path
+from .views import EmployeeProfileViewSet, SalaryInsightsAPIView, CountryListAPIView
 
 router = DefaultRouter()
 router.register(r'', EmployeeProfileViewSet, basename='employee')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('insights/salary/', SalaryInsightsAPIView.as_view(), name='salary-insights'),
+    path('insights/countries/', CountryListAPIView.as_view(), name='country-list'),
+] + router.urls
