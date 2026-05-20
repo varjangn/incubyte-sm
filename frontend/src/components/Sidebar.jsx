@@ -17,10 +17,10 @@ const Sidebar = () => {
           Employees
         </Link>
         <Link
-          to="/tab2"
-          className={`nav-item ${location.pathname === '/tab2' ? 'active' : ''}`}
+          to="/insights"
+          className={`nav-item ${location.pathname === '/insights' ? 'active' : ''}`}
         >
-          Second Tab
+          Insights
         </Link>
       </nav>
     </aside>
